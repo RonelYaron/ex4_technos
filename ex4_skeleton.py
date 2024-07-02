@@ -8,7 +8,7 @@ import time
 DOOFENSHMIRTZ_IP = "10.0.2.15"  # Enter the computer you attack's IP.
 SECRATERY_IP = "10.0.2.4"  # Enter the attacker's IP.
 NETWORK_DNS_SERVER_IP = "10.0.2.43"  # Enter the network's DNS server's IP.
-SPOOF_SLEEP_TIME = 2
+SPOOF_SLEEP_TIME = 5
 
 IFACE = "???"  # Enter the network interface you work on.
 
